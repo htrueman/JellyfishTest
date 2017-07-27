@@ -10,10 +10,7 @@ log = logging.getLogger(__name__)
 @channel_session_user_from_http
 def ws_connect(message):
     label = 'chat'
-    room = Room.objects.get(label=label)
-
-    log.debug('chat connect room=%s client=%s:%s',
-              room.label, message['client'][0], message['client'][1])
+    room = Room.objects.get_or_create(label=label)[0]
 
     Group('chat-' + label, channel_layer=message.channel_layer).add(
         message.reply_channel)
