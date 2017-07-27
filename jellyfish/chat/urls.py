@@ -10,5 +10,5 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^register/$', views.registration, name='registration'),
 
-    url(r'^chat/$', login_required(views.chat_room), name='chat_room'),
+    url(r'^$', login_required(views.chat_room), name='chat_room'),
 ]
